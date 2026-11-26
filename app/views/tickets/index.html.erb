@@ -1,0 +1,30 @@
+<% content_for :title, "Inbox" %>
+
+<main>
+  <h1>Inbox</h1>
+
+  <% if @tickets.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Customer</th>
+          <th>Status</th>
+          <th>Received</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tickets.each do |ticket| %>
+          <tr>
+            <td data-test="ticket-subject"><%= ticket.subject %></td>
+            <td><%= ticket.customer_email %></td>
+            <td><%= ticket.status.humanize %></td>
+            <td><%= time_tag ticket.created_at, "#{time_ago_in_words(ticket.created_at)} ago" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No tickets yet.</p>
+  <% end %>
+</main>
