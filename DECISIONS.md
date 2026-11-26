@@ -25,3 +25,19 @@ There are no real tickets to label yet, and a planted cause can be checked by a 
 The agent drafts and a person sends. The alternative was to send automatically above some confidence level.
 
 A wrong answer sent to a customer costs more than the minutes saved. It also makes prompt injection much less useful, because nothing the agent writes leaves the system on its own.
+
+## 4. A free local model, not a paid API
+
+2026-11-26
+
+The agent runs on an open model through Ollama on the same machine. The alternative was a hosted model behind a paid API.
+
+The project should cost nothing to build or run. Small local models are weaker at tool use, so the code talks to the model through one small interface and the model is chosen in config. The evals then show what a stronger model would add instead of guessing.
+
+## 5. No public deploy
+
+2026-11-26
+
+The app runs locally with one setup command, and the README carries screenshots and a short recording. The alternative was a hosted demo.
+
+Hosting costs money every month, and a live demo of an agent would also need a live model behind it. A clear README and a one-command setup show the same work.
