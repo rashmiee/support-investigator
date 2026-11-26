@@ -20,8 +20,14 @@ default: &default
   max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 
-development:
+local: &local
   <<: *default
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
+  username: <%= ENV.fetch("DB_USERNAME", "postgres") %>
+  password: <%= ENV.fetch("DB_PASSWORD", "password") %>
+
+development:
+  <<: *local
   database: support_investigator_development
 
   # The specified database role being used to connect to PostgreSQL.
@@ -55,7 +61,7 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
+  <<: *local
   database: support_investigator_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
