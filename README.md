@@ -21,9 +21,9 @@ Most support tickets for a SaaS product are answered by looking things up. Someo
 ## What has to be true
 
 - The agent cannot change data and cannot read another customer's rows. Queries run under a read-only database role with row-level security, a statement timeout and a row limit. That holds even when the model writes a bad query or the ticket text tries to trick it.
-- It is measured. The repo ships with seeded scenarios where the cause of each ticket is known, and an eval run reports how often the agent finds it, what a ticket costs and how long it takes.
+- It is measured. The repo ships with seeded scenarios where the cause of each ticket is known, and an eval run reports how often the agent finds it, how many tokens a ticket takes and how long it takes.
 - Every finding shows its work, with links to the queries and rows behind it.
-- Cost is visible. Tokens and cost are recorded for each step and each ticket.
+- It runs for free. The model is an open model running on the same machine, and it can be swapped for another one in config.
 
 ## The demo product
 
@@ -31,7 +31,19 @@ The agent needs a product to investigate. The repo includes a small booking data
 
 ## Stack
 
-Ruby on Rails, PostgreSQL, Hotwire, Solid Queue, RSpec, and Claude through the Anthropic API.
+Ruby on Rails, PostgreSQL, Hotwire, Solid Queue, RSpec, and an open model through Ollama.
+
+## Run it locally
+
+You need Ruby 4.0.10 and PostgreSQL. The database settings read `DB_HOST`, `DB_USERNAME` and `DB_PASSWORD`, and default to `localhost`, `postgres` and `password`.
+
+```bash
+bin/setup
+```
+
+This installs the gems, creates the database, loads sample tickets and starts the app at http://localhost:3000.
+
+Run the tests with `bundle exec rspec`.
 
 ## License
 
